@@ -43,7 +43,10 @@ class AllPackagesBody extends StatelessWidget {
                         'Pick a membership that fits you',
                         style: FontStyles.bigTitle,
                       )
-                    : PackageWidget(package: cubit.packages[index - 1]),
+                    : PackageWidget(
+                        package: cubit.packages[index - 1],
+                        onTap: cubit.subscribe,
+                      ),
                 separatorBuilder: (context, index) => const Gap(20),
                 itemCount: cubit.packages.length + 1,
                 padding: const EdgeInsets.all(10),

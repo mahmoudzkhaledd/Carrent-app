@@ -10,6 +10,8 @@ class UserTeamsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const LoadingFailsWidget(
+        title: '404 Not Found', image: 'not found.png');
     final cubit = context.read<UserTeamsCubit>();
     return BlocBuilder<UserTeamsCubit, UserTeamsState>(
       builder: (context, state) {

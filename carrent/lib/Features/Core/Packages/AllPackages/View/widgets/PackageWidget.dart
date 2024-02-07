@@ -8,10 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
 class PackageWidget extends StatelessWidget {
-  const PackageWidget({super.key, required this.package});
+  const PackageWidget({super.key, required this.package, required this.onTap});
 
   final Package package;
-
+  final void Function(String id) onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -92,9 +92,17 @@ class PackageWidget extends StatelessWidget {
               ],
             ),
           const Gap(20),
+          AppText(
+            package.description,
+            textAlign: TextAlign.center,
+            style: FontStyles.p,
+          ),
+          const Gap(20),
           CustomButton(
             text: 'Subscribe Now',
-            onTap: () {},
+            onTap: () {
+              onTap(package.id);
+            },
             borderRadius: 20,
           )
         ],

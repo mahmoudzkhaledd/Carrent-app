@@ -6,42 +6,34 @@ import 'package:carrent/services/GeneralServices/NetworkService.dart';
 
 class PackagesService {
   final dio = NetworkService.instance;
-  // Future<ResponseResult> addNewCar(Map<String, dynamic> json) async {
-  //   final res = await NetworkService.handelRequest(
-  //     future: dio.post('cars', data: json),
-  //   );
-  //   if (res == null) {
-  //     return ResponseResult(
-  //       data: null,
-  //       icon: null,
-  //       internet: false,
-  //       msg: null,
-  //       success: false,
-  //     );
-  //   }
-  //   switch (res.statusCode) {
-  //     case 400:
-  //       return ResponseResult(
-  //         data: res.data,
-  //         icon: null,
-  //         msg: "There exist a car with the same plate number.",
-  //         success: false,
-  //       );
-  //     case 200:
-  //       return ResponseResult(
-  //         data: res.data,
-  //         icon: null,
-  //         msg: null,
-  //         success: true,
-  //       );
-  //   }
-  //   return ResponseResult(
-  //     data: res.data,
-  //     icon: null,
-  //     msg: "Unknown error occured, please try again later",
-  //     success: false,
-  //   );
-  // }
+  Future<ResponseResult> subscribe(String id) async {
+    final res = await NetworkService.handelRequest(
+      future: dio.post('/packages/$id/subscribe' , data: {}),
+    );
+    if (res == null) {
+      return ResponseResult(
+        data: null,
+        icon: null,
+        internet: false,
+        msg: null,
+        success: false,
+      );
+    }
+    if(res.statusCode == 200){
+      return ResponseResult(
+        data: res.data,
+        icon: null,
+        msg: null,
+        success: true,
+      );
+    }
+    return ResponseResult(
+      data: res.data,
+      icon: null,
+      msg: res.data['msg']?? "Unknown error occured, please try again later",
+      success: false,
+    );
+  }
 
   // Future<ResponseResult> updateCar(Car car) async {
   //   final res = await NetworkService.handelRequest(

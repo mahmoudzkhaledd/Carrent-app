@@ -49,7 +49,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
     NetworkService.refreshAccessToken(token);
     bool res = await SplashScreenService().checkAuth();
     if (res) {
-      Get.offAll(() => const AllPackagesPage());
+      Get.offAll(() => const HomePage());
     } else {
       Get.offAll(() => const LandingPage());
     }

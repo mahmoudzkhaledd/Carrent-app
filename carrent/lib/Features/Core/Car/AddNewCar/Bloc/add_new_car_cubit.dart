@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:carrent/Features/Core/Car/CarPage/view/CarPage.dart';
 import 'package:carrent/Features/Core/Car/Service/CarService.dart';
 import 'package:carrent/Helper/Helper.dart';
 import 'package:carrent/Models/Car.dart';
@@ -24,7 +25,7 @@ class AddNewCarCubit extends Cubit<AddNewCarState> {
   final CarService service = CarService();
   int page = 0;
   int currentPageIndex = 0;
-  
+
   AddNewCarCubit(Car? car) : super(AddNewCarInitial()) {
     editMode = car != null;
     if (car != null) {
@@ -86,6 +87,11 @@ class AddNewCarCubit extends Cubit<AddNewCarState> {
       editMode ? "The car edited succefully" : 'The car added succefully',
       icon: FluentIcons.checkmark_20_regular,
     );
+    if (editMode) {
+      Get.off(() => CarPage(id: car.id));
+    } else {
+      Get.off(() => CarPage(id: res.data['car']['_id']));
+    }
   }
 
   void removeNetworkImage() async {
@@ -111,5 +117,18 @@ class AddNewCarCubit extends Cubit<AddNewCarState> {
     Get.to(() => CarGalary(
           car: car,
         ));
+  }
+
+  void deleteCar(String id) async {
+    emit(AddNewCarLoadingState());
+    final res = await service.deleteCar(id);
+    if (res.success == false) {
+      Helper.showMessage("Error", res.msg!);
+      emit(AddNewCarFailedState());
+      return;
+    }
+    await Helper.showMessage("Success", "The car deleted successfully");
+    Get.back(result: true);
+    emit(AddNewCarSuccessState());
   }
 }

@@ -19,7 +19,10 @@ class AddImageWidget extends StatelessWidget {
       children: [
         CustomButton(
           text: '',
-          icon: const Icon(Icons.add),
+          icon: Icon(
+            Icons.add,
+            color: AppColors.instance.background,
+          ),
           verticalPadding: 5,
           onTap: cubit.choseImage,
         ),
@@ -31,7 +34,10 @@ class AddImageWidget extends StatelessWidget {
         const Spacer(),
         CustomButton(
           text: '',
-          icon: const Icon(Icons.check),
+          icon: Icon(
+            Icons.check,
+            color: AppColors.instance.background,
+          ),
           verticalPadding: 5,
           onTap: cubit.uploadImages,
         ),

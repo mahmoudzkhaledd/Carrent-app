@@ -1,9 +1,11 @@
 import 'package:carrent/Features/Auth/StartingPage/View/StartingPage.dart';
+import 'package:carrent/Features/Core/Packages/AllPackages/View/AllPackages.dart';
 import 'package:carrent/Features/Core/Team/TeamsPage/View/UserTeamsPage.dart';
 import 'package:carrent/GeneralWidgets/AppText.dart';
 import 'package:carrent/Shared/SharedTextStyles.dart';
 import 'package:carrent/services/GeneralServices/StorageService.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
@@ -35,6 +37,24 @@ class HomePageBottomSheet extends StatelessWidget {
             leading: const CircleAvatar(
               foregroundColor: Colors.black,
               child: Icon(Icons.people_alt_rounded),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              Get.off(() => const AllPackagesPage());
+            },
+            contentPadding: EdgeInsets.zero,
+            title: AppText(
+              'Packages',
+              style: FontStyles.listTitle,
+            ),
+            subtitle: AppText(
+              'See all packages',
+              style: FontStyles.p,
+            ),
+            leading: const CircleAvatar(
+              foregroundColor: Colors.black,
+              child: Icon(Icons.star),
             ),
           ),
           ListTile(
