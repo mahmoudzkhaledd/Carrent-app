@@ -24,6 +24,7 @@ class AddNewCarCubit extends Cubit<AddNewCarState> {
   final CarService service = CarService();
   int page = 0;
   int currentPageIndex = 0;
+  
   AddNewCarCubit(Car? car) : super(AddNewCarInitial()) {
     editMode = car != null;
     if (car != null) {

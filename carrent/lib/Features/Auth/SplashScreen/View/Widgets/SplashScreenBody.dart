@@ -1,3 +1,4 @@
+import 'package:carrent/Features/Core/Packages/AllPackages/View/AllPackages.dart';
 import 'package:carrent/GeneralWidgets/Image.dart';
 import 'package:carrent/Helper/Helper.dart';
 import 'package:carrent/Shared/SharedTextStyles.dart';
@@ -48,7 +49,7 @@ class _SplashScreenBodyState extends State<SplashScreenBody>
     NetworkService.refreshAccessToken(token);
     bool res = await SplashScreenService().checkAuth();
     if (res) {
-      Get.offAll(() => const HomePage());
+      Get.offAll(() => const AllPackagesPage());
     } else {
       Get.offAll(() => const LandingPage());
     }

@@ -8,8 +8,8 @@ import '../../Shared/Secrets.dart';
 import 'package:get/get.dart' as getx;
 
 class NetworkService {
-  static String devBaseUrl = "http://192.168.1.8:3000/";
-  static String runBaseUrl = "http://192.168.1.8:3000/";
+  static String devBaseUrl = "https://car-rent-api.vercel.app/";
+  static String runBaseUrl = "https://car-rent-api.vercel.app/";
   static late Dio instance;
   static String accessToken = "";
 
