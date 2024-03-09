@@ -9,7 +9,7 @@ class Rent {
   String clientName = "";
   String clientPhone = "";
   String clientIdentity = "";
-
+  bool finished = false;
   String startingDate = DateTime.now().toString();
   String endingDate = DateTime.now().add(const Duration(days: 1)).toString();
   double totalPrice = 0;
@@ -28,6 +28,7 @@ class Rent {
     }
     startingDate = json["startingDate"];
     endingDate = json["endingDate"];
+    finished = json["finished"] ?? false;
     clientName = json["clientName"];
     clientPhone = json["clientPhone"];
     clientIdentity = json["clientIdentity"];

@@ -49,4 +49,31 @@ class RentDetailsCubit extends Cubit<RentDetailsState> {
     );
     Get.back();
   }
+
+  void finishRent() async {
+    bool ans = await Helper.showYesNoMessage(
+      "Delete Rent",
+      "Are you sure you want to finish this rent?",
+    );
+    if (!ans || rent == null) return;
+    final res = await Helper.showLoading(
+      "Updating your rent",
+      "Please wait",
+      () => services.finishRent(rent!.id),
+    );
+    if (res != null) {
+      await Helper.showMessage(
+        "Error While finishing the rent",
+        res,
+      );
+      return;
+    }
+    await Helper.showMessage(
+      "Succeful Operation",
+      "Rent finished succefully",
+      icon: Icons.check_circle,
+    );
+    rent!.finished = !rent!.finished;
+    emit(RentDetailsInitial());
+  }
 }

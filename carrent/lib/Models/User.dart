@@ -38,7 +38,9 @@ class User {
   }
 
   String get getQrCode => 'user $id';
+
   User.fromJson(Map<String, dynamic> json) {
+    print(json);
     id = json['_id'] ?? "";
     firstName = json['firstName'] ?? "";
     phone = json['phone'] ?? "";

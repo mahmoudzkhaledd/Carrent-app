@@ -3,7 +3,6 @@ import 'package:carrent/Models/ResponseResult.dart';
 
 class HandelNetworkRequest {
   static Future<bool> handelRequest(ResponseResult res) async {
-    print(res.data);
     if (res.success) {
       return true;
     }
@@ -11,7 +10,7 @@ class HandelNetworkRequest {
     if (res.msg != null) {
       await Helper.showMessage(
         'Error',
-        res.data?['msg'] ?? res.msg!,
+        res.msg!,
         icon: res.icon,
       );
     }

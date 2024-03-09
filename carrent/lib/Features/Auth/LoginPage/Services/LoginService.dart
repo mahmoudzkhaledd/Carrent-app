@@ -17,9 +17,9 @@ class LoginService {
         data: {
           "email": email,
           "password": password,
-          "deviceToken": getx.Get.find<AppUser>().deviceToken,
         },
       );
+
       getx.Get.find<AppUser>().user = User.fromJson(res.data['user']);
       if (getx.Get.find<AppUser>().user!.verifiedEmail) {
         await StorageServices.instance.saveUserToken(res.data['token']);
@@ -52,7 +52,16 @@ class LoginService {
         );
       }
 
-      NetworkService.refreshAccessToken(res.data['token']);
+      if (res.statusCode == 400 && res.data['errors'] != null) {
+        return ResponseResult(
+          data: null,
+          icon: FontAwesomeIcons.faceSadCry,
+          msg: res.data['errors'][0]['msg'],
+          success: false,
+        );
+      }
+
+      NetworkService.refreshAccessToken(res.data['token'] ?? "");
       getx.Get.find<AppUser>().user = User.fromJson(res.data['user']);
       return ResponseResult(
         data: null,

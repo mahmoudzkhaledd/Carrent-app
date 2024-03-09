@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:carrent/Features/Core/Car/CarPage/view/CarPage.dart';
 import 'package:carrent/Features/Core/Car/Service/CarService.dart';
 import 'package:carrent/Helper/Helper.dart';
 import 'package:carrent/Models/Car.dart';
@@ -85,6 +86,11 @@ class AddNewCarCubit extends Cubit<AddNewCarState> {
       editMode ? "The car edited succefully" : 'The car added succefully',
       icon: FluentIcons.checkmark_20_regular,
     );
+    if (res.data != null &&
+        res.data['car'] != null &&
+        res.data['car']["_id"] != null) {
+      Get.off(() => CarPage(id: res.data['car']["_id"]));
+    }
   }
 
   void removeNetworkImage() async {

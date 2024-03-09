@@ -82,6 +82,7 @@ class RentDetailsBody extends StatelessWidget {
               RentDetailCard(
                 title: "Rent Details",
                 rows: [
+                  Pair("State", cubit.rent!.finished ? "Finished" : "Active"),
                   Pair("Starting date", cubit.rent!.startingDate.split(' ')[0]),
                   Pair("Ending date", cubit.rent!.endingDate.split(' ')[0]),
                   Pair(
@@ -127,6 +128,12 @@ class RentDetailsBody extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              const Gap(10),
+              CustomButton(
+                text: cubit.rent!.finished ? "Active rent" : "Finish rent",
+                verticalPadding: 10,
+                onTap: cubit.finishRent,
               ),
               const Gap(50),
             ],

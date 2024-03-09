@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carrent/Shared/AppColors.dart';
 import 'package:carrent/Shared/SharedTextStyles.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -61,10 +62,10 @@ class Helper {
   ) async {
     showDialog(
       context: Get.context!,
-      barrierDismissible: false,
+      barrierDismissible: !kDebugMode,
       builder: (_) => WillPopScope(
         onWillPop: () async {
-          return false;
+          return !kDebugMode;
         },
         child: AlertDialog(
           shape: _shape,

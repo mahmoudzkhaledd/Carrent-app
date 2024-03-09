@@ -80,6 +80,19 @@ class RentServices {
     return Rent.fromJson(res.data['rent']);
   }
 
+  Future<String?> finishRent(String rentId) async {
+    final res = await NetworkService.handelRequest(
+      future: dio.post('rents/$rentId/finish'),
+    );
+
+    if (res == null || res.statusCode != 200) {
+      return res != null && res.data['msg'] != null
+          ? res.data['msg'].toString()
+          : "Error has occured, please try again!";
+    }
+    return null;
+  }
+
   Future<String?> deleteRent(String rentId) async {
     final res = await NetworkService.handelRequest(
       future: dio.delete('rents/$rentId'),

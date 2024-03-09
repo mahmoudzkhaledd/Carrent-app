@@ -1,7 +1,7 @@
 import 'package:carrent/Features/Home/HomePage/Cubits/HomeCubit/home_cubit.dart';
 import 'package:carrent/Features/Home/HomePage/Widgets/CustomAppBar.dart';
 import 'package:carrent/Features/Home/HomePage/Widgets/OptionsRow.dart';
-import 'package:carrent/Features/Home/HomePage/Widgets/RecentRents.dart';
+import 'package:carrent/Features/Home/HomePage/Widgets/HistoryWidget.dart';
 import 'package:carrent/GeneralWidgets/CustomContainer.dart';
 import 'package:carrent/Helper/Helper.dart';
 import 'package:carrent/Shared/AppColors.dart';
@@ -47,8 +47,8 @@ class HomePageBody extends StatelessWidget {
                         child: OptionsRow(),
                       ),
                     ),
-                    RecentRents(
-                      rents: cubit.rents,
+                    HistoryWidget(
+                      histories: cubit.history,
                     ),
                   ],
                 ),

@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:carrent/Models/HistoryRecord.dart';
 import 'package:carrent/Models/Rent.dart';
+import 'package:carrent/services/GeneralServices/HistoryServices.dart';
 import 'package:carrent/services/GeneralServices/RentServices.dart';
 
 import 'package:meta/meta.dart';
@@ -10,12 +12,12 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial()) {
     getData();
   }
-  final RentServices services = RentServices();
-  List<Rent> rents = [];
+  final HistoryServices services = HistoryServices();
+  List<HistoryRecord> history = [];
   void getData() async {
-    rents.clear();
+    history.clear();
     emit(HomeLoadingState());
-    rents = await services.getUserRents("", 0, 'date', 5) ?? [];
+    history = await services.getUserHistory(10) ?? [];
 
     emit(HomeSuccessState());
   }
