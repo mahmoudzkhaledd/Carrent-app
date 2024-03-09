@@ -209,4 +209,33 @@ class CarService {
     }
     return ans;
   }
+
+  Future<ResponseResult> deleteCar(id) async {
+    final res = await NetworkService.handelRequest(
+      future: dio.delete('cars/$id'),
+    );
+    if (res == null) {
+      return ResponseResult(
+        data: null,
+        icon: null,
+        internet: false,
+        msg: null,
+        success: false,
+      );
+    }
+    if (res.statusCode == 200) {
+      return ResponseResult(
+        data: res.data,
+        icon: null,
+        msg: null,
+        success: true,
+      );
+    }
+    return ResponseResult(
+      data: res.data,
+      icon: null,
+      msg: res.data['msg']?? "Unknown error occured, please try again later",
+      success: false,
+    );
+  }
 }

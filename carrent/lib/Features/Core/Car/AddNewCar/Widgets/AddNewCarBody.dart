@@ -203,6 +203,12 @@ class AddNewCarBody extends StatelessWidget {
                     onTap: cubit.goToGalary,
                   ),
                 if (cubit.editMode) const Gap(10),
+                if (cubit.editMode)
+                  CustomButton(
+                    text: "Delete",
+                    onTap: () => cubit.deleteCar(cubit.car.id),
+                  ),
+                if (cubit.editMode) const Gap(10),
                 CustomButton(
                   text: cubit.editMode ? "Save Changes" : 'Add',
                   onTap: cubit.updateAddCar,
